@@ -5,11 +5,9 @@ const email = document.querySelector('input[name="email"]');
 const message = document.querySelector('textarea[name="message"]');
 const localKey = 'feedback-form-state';
 
-form.addEventListener(
-  'input',
-  throttle(evt => {
-    const objectToSave = { email: email.value, message: message.value };
-    localStorage.setItem(localKey, JSON.stringify(objectToSave));
+form.addEventListener('input', throttle(evt => {
+    const storedValue = { email: email.value, message: message.value };
+    localStorage.setItem(localKey, JSON.stringify(storedValue));
   }, 500)
 );
 
@@ -20,17 +18,18 @@ form.addEventListener('submit', evt => {
   localStorage.removeItem(localKey);
 });
 
-const load = key => {
+function fn(storedValue) {
   try {
-    const serializedState = localStorage.getItem(key);
-    return serializedState === null ? undefined : JSON.parse(serializedState);
-  } catch (error) {
-    console.error('Get state error: ', error.message);
+    if (storedValue !== null) {
+      console.log(storedValue);
+      const aa = JSON.parse(storedValue);
+      console.log(aa.email, aa.message);
+      email.value = aa.email;
+      message.value = aa.message;
+    }
+  } catch (err) {
+    console.error('Get state error: ', err.message);
   }
 };
 
-const storageData = load(localKey);
-if (storageData) {
-  email.value = storageData.email;
-  message.value = storageData.message;
-}
+fn(localStorage.getItem(localKey));

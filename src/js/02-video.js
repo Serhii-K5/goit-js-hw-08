@@ -13,6 +13,6 @@ player
   .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
   .catch((err) => { console.error(err) });
 
-// player.catch(function (err) {
+// player.catch((err) => {
 //   console.error(err)
 // });
