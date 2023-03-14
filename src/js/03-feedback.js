@@ -21,11 +21,9 @@ form.addEventListener('submit', evt => {
 function fn(storedValue) {
   try {
     if (storedValue !== null) {
-      console.log(storedValue);
-      const aa = JSON.parse(storedValue);
-      console.log(aa.email, aa.message);
-      email.value = aa.email;
-      message.value = aa.message;
+      const parseValue = JSON.parse(storedValue);
+      email.value = parseValue.email;
+      message.value = parseValue.message;
     }
   } catch (err) {
     console.error('Get state error: ', err.message);
