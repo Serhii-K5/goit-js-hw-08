@@ -8,7 +8,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const gallery = document.querySelector('.gallery');
 const arr = [];
 
-galleryItems.Map(el => {
+galleryItems.forEach(el => {
 	const galleryDiv = document.createElement('div');
 	galleryDiv.className = 'gallery__item';
 
