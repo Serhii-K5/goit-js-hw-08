@@ -5,17 +5,10 @@ const email = document.querySelector('input[name="email"]');
 const message = document.querySelector('textarea[name="message"]');
 const localKey = 'feedback-form-state';
 
-<<<<<<< Updated upstream
 form.addEventListener('input', throttle(evt => {
     const storedValue = { email: email.value, message: message.value };
     localStorage.setItem(localKey, JSON.stringify(storedValue));
   }, 500)
-=======
-form.addEventListener('input', throttle1(evt => {
-  const storedValue = { email: email.value, message: message.value };
-  localStorage.setItem(localKey, JSON.stringify(storedValue));
-}, 500)
->>>>>>> Stashed changes
 );
 
 form.addEventListener('submit', evt => {
@@ -25,7 +18,6 @@ form.addEventListener('submit', evt => {
   localStorage.removeItem(localKey);
 });
 
-<<<<<<< Updated upstream
 function fn(storedValue) {
   try {
     if (storedValue !== null) {
@@ -39,22 +31,3 @@ function fn(storedValue) {
 };
 
 fn(localStorage.getItem(localKey));
-=======
-const dataAcquisition = val => {
-  try {
-    const storedValue = localStorage.getItem(val);
-    if(storedValue === null) {
-      return JSON.parse(storedValue);
-    }
-    return undefined;
-  } catch (err) {
-    console.log('Get state error: ', err.message);
-  }
-};
-
-const storedValue = dataAcquisition(localKey);
-if (storedValue) {
-  email.value = storedValue.email;
-  message.value = storedValue.message;
-}
->>>>>>> Stashed changes
